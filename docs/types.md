@@ -11,15 +11,20 @@
 
 ### Composite Types
 
-1. pointer - C pointer alike.
+1. Containers
+   1. array - fixed-length container types.
+   2. slice - dynamic-length and dynamic-capacity container types
+   3. map - maps are associative arrays (or dictionaries). The standard Go compiler implements maps as hashtables.
 2. struct - C struct alike.
 3. function (func) - functions are first-class types in Go.
-4. Containers
-   3. array - fixed-length container types.
-   4. slice - dynamic-length and dynamic-capacity container types
-   5. map - maps are associative arrays (or dictionaries). The standard Go compiler implements maps as hashtables.
+4. interface - interfaces play a key role in reflection and polymorphism.
+5. pointer - C pointer alike.
 6. channel - channels are used to synchronize data among goroutines (the green threads in Go).
-7. interface - interfaces play a key role in reflection and polymorphism. 
+
+
+
+
+ 
 
 ### zero values (аналог null, но не он)
 у каждого типа свои. строки, числа, булы - понятно,

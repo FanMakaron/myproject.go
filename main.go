@@ -46,12 +46,12 @@ func printSlice(slice []int, sliceName string) {
 }
 
 func arraySliceMap() {
-	fmt.Println("----------Array & Slices----------")
 	// Массивы имеют фиксированный размер в статичной памяти
 	// объявление массива через var
 	var arrayVar [5]int
 	arrayVar[0] = 1
 	arrayVar[1] = 2
+	arrayVar[2] = 3
 	fmt.Printf("arrayVar is %v len=%d cap=%d %v\n", reflect.TypeOf(arrayVar).Kind(), len(arrayVar), cap(arrayVar), arrayVar)
 
 	// объявление массива в короткой форме
@@ -63,7 +63,7 @@ func arraySliceMap() {
 	// диапазон можно не указывать, [:1] - первый элемент будет нулевой, [1:] - последний элемент будет равен длине массива
 	// Длина len() — это количество элементов, которые содержит срез или массив.
 	// Емкость cap() — это количество элементов в базовом массиве, считая от ПЕРВОГО элемента В СРЕЗЕ.
-	var sliceVar = arrayVar[0:2]
+	var sliceVar = arrayVar[1:3]
 	printSlice(sliceVar, "sliceVar")
 
 	// слайсы - указатели на интервал массива, изменения значений в слайсе приводит к изменению значений в массиве
@@ -117,9 +117,7 @@ func arraySliceMap() {
 	//for _, value := range pow
 
 	// Map
-	var mapVar = map[string]int{
-		"abc": 2,
-	}
+	var mapVar = map[string]int{"abc": 2}
 	//mapVar = make(map[string]int)
 	fmt.Printf("mapVar is %v len=%d %v\n", reflect.TypeOf(mapVar).Kind(), len(mapVar), mapVar)
 	mapVar["qwe"] = 1
@@ -142,12 +140,27 @@ type Vertex struct {
 	X, Y float64
 }
 
+// Метод привязанный к определенному типу Vertex
 func (v Vertex) Abs() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
+// если убрать указатель, то вызов Scale ничего не изменит
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
 func methodsInterfaces() {
 	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
+
+	v.Scale(10)
+	fmt.Println(v.Abs())
+
+	p := &Vertex{4, 3}
+	// и так тоже будет работать потому что  method call p.Scale() is interpreted as (*p).Scale().
+	p.Scale(3)
 	fmt.Println(v.Abs())
 }
 
@@ -155,7 +168,7 @@ func main() {
 	fmt.Println("----------add, swap, split----------")
 	fmt.Println(add(42, 13))
 	fmt.Println(swap("hello", "word"))
-	fmt.Println(split(17))
+	fmt.Println(split(25))
 
 	// предопределение переменных в одной строке
 	//var c, python, java = true, false, "no!"
@@ -223,9 +236,7 @@ func main() {
 
 	// defer - отложить выполнение после возврата из функции
 	// вызываются в обратном порядке
-	fmt.Println("----------defer----------")
 	defer fmt.Println("----------this is DEFER! (not sparta)----------")
-	fmt.Println("hello")
 
 	//
 	fmt.Println("----------Указатели----------")
@@ -247,6 +258,7 @@ func main() {
 	p1.Y = 3
 	fmt.Println(st)
 
+	fmt.Println("----------Array & Slices----------")
 	arraySliceMap()
 
 	fmt.Println("----------Замыкания----------")
@@ -258,6 +270,7 @@ func main() {
 		)
 	}
 
+	fmt.Println("----------Методы и интерфейсы----------")
 	methodsInterfaces()
 
 }
