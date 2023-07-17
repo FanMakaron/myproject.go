@@ -20,6 +20,15 @@ func (MyReader) Read(b []byte) (n int, err error) {
 	return 1, nil
 }
 
+type rot13Reader struct {
+	r io.Reader
+}
+
+// https://go.dev/tour/methods/23
+func (rot rot13Reader) Read(b []byte) (int, error) {
+	return rot.r.Read(b)
+}
+
 func main() {
 
 	/**
@@ -42,6 +51,11 @@ func main() {
 
 	reader.Validate(MyReader{})
 	Validate(MyReader{})
+
+	s := strings.NewReader("Lbh penpxrq gur pbqr!")
+	r := rot13Reader{s}
+	io.Copy(os.Stdout, &r)
+
 }
 
 // Validate Перенес тест из golang.org/x/tour/reader
