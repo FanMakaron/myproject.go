@@ -273,7 +273,9 @@ func main() {
 	fmt.Println("----------Методы и интерфейсы----------")
 	methodsInterfaces()
 
-	//test := []byte{0, 0, 0, 0, 0}
-	test := []byte("A")
-	fmt.Println(test[0])
+	fmt.Println("----------Совсем всякий мусор----------")
+
+	var a byte
+	a = 3
+	fmt.Println(a)
 }

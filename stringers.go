@@ -7,6 +7,7 @@ import (
 
 type IPAddr [4]byte
 
+// String implements the fmt.Stringer interface.
 func (ip IPAddr) String() string {
 	var s string
 	for n, cel := range ip {
@@ -19,6 +20,10 @@ func (ip IPAddr) String() string {
 
 	return s
 
+}
+
+func Error() string {
+	return ""
 }
 
 // from mentor

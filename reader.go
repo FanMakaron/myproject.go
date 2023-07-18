@@ -10,9 +10,11 @@ import (
 
 type MyReader struct{}
 
+// https://go.dev/tour/methods/22
 // Implement a Reader type that emits an infinite stream of the ASCII character 'A'.
 // TODO: Add a Read([]byte) (int, error) method to MyReader.
 
+// Read implements the io.Reader interface.
 func (MyReader) Read(b []byte) (n int, err error) {
 	for i := range b {
 		b[i] = 'A'
@@ -25,6 +27,7 @@ type rot13Reader struct {
 }
 
 // https://go.dev/tour/methods/23
+// Read implements the io.Reader interface.
 func (rot rot13Reader) Read(b []byte) (int, error) {
 	return rot.r.Read(b)
 }
