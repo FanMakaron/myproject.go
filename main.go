@@ -275,7 +275,4 @@ func main() {
 
 	fmt.Println("----------Совсем всякий мусор----------")
 
-	var a byte
-	a = 3
-	fmt.Println(a)
 }
