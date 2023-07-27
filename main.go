@@ -274,5 +274,4 @@ func main() {
 	methodsInterfaces()
 
 	fmt.Println("----------Совсем всякий мусор----------")
-
 }
